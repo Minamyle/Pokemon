@@ -2,21 +2,22 @@ import React from 'react';
 import { FiHome } from "react-icons/fi";
 import { RiTeamFill } from "react-icons/ri";
 import { Link, useLocation } from 'react-router-dom';
-const navLink  = [
-    {
-        name: 'Home',
-        link: '/',
-        icon: <FiHome />,
-        check: ''
-    },
-    {
-        name: 'Team',
-        link: '/my-pokemon',
-        icon: <RiTeamFill />,
-        check: 'my-pokemon'
-    },
-    
-]
+// Array 'navLink' containing objects representing navigation links
+const navLink = [
+  {
+      name: 'Home',
+      link: '/',           
+      icon: <FiHome />,    
+      check: ''             // Additional check, possibly for conditional styling
+  },
+  {
+      name: 'Team',
+      link: '/my-pokemon',      
+      icon: <RiTeamFill />,     
+      check: 'my-pokemon'        // Additional check, possibly for conditional styling
+  },
+
+];
 const Sidebar = ({showSidebar, setShowSidebar}) => {
     const location = useLocation()
     const pathname = location.pathname.split('/')

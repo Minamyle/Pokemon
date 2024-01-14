@@ -4,17 +4,28 @@ import Axios from "axios";
 import { addItemToLocalstorage } from "../functions";
 
 const PokemonDetail = () => {
-  const [loading, setLoading] = useState(false);
-  const [res, setRes] = useState([]);
-  const [error, setError] = useState(false);
-  const [allImages, setAllImages] = useState([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { id } = useParams();
+ // State variable to track loading status
+const [loading, setLoading] = useState(false);
+
+// State variable to store response data
+const [res, setRes] = useState([]);
+
+// State variable to track error status
+const [error, setError] = useState(false);
+
+// State variable to store an array of images
+const [allImages, setAllImages] = useState([]);
+
+// State variable to keep track of the index of the current image being displayed, initially set to 0
+const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+// Destructuring 'id' from the parameters of the current route using the 'useParams' hook
+const { id } = useParams();
 
   const getPokemons = async () => {
-    // console.log("called");
+   
     if (id) {
-      // console.log("in");
+      
       try {
         setRes([]);
         setError(false);
@@ -39,18 +50,22 @@ const PokemonDetail = () => {
     }
   };
 
-  useEffect(() => {
-    if (res.name) {
+// useEffect hook to handle updating the 'allImages' state when 'res' changes
+useEffect(() => {
+  // Check if 'res' has a 'name' property
+  if (res.name) {
+      // Extract image URLs from 'res.sprites.other' and filter out falsy values
       const newImageURLs = Object.values(res.sprites.other).reduce(
-        (acc, val) => {
-          return acc.concat(Object.values(val).filter((url) => url));
-        },
-        []
+          (acc, val) => {
+              return acc.concat(Object.values(val).filter((url) => url));
+          },
+          []
       );
 
+      // Update 'allImages' state with the extracted image URLs
       setAllImages(newImageURLs);
-    }
-  }, [res]);
+  }
+}, [res]);
 
   // console.log(allImages);
   //  to get pokemon detail when we open the page
@@ -58,15 +73,17 @@ const PokemonDetail = () => {
     getPokemons();
   }, []);
 
-  const handleAddToTeam = () => {
-    addItemToLocalstorage(
-      res.name,
-      res.id,
-      allImages[0],
-      res.height,
-      res.weight
-    );
-  };
+ // Function to handle adding a Pokemon to the team by storing relevant data in local storage
+const handleAddToTeam = () => {
+  // Call the addItemToLocalstorage function with specific parameters
+  addItemToLocalstorage(
+      res.name,          // Pokemon name
+      res.id,            // Pokemon ID
+      allImages[0],      // URL of the first image
+      res.height,        // Pokemon height
+      res.weight         // Pokemon weight
+  );
+};
   return (
     <>
       {loading ? (

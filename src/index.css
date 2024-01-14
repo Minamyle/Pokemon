@@ -19,8 +19,7 @@
   .sidebar-slide-in {
     width: 240px;
     transition: width 150ms ease-out;
-    /* height: 100vh; */
-    /* position: relative; */
+   
   }
 
   @media (max-width: 768px) {

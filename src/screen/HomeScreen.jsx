@@ -4,11 +4,21 @@ import { IoSearchSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
 const HomeScreen = () => {
-  const [loading, setLoading] = useState(false)
-  const [pokemon, setPokemon] = useState('')
-  const [data, setData] = useState([])
-  const [image, setImage] = useState('')
-  const [error, setError] = useState(false)
+ 
+// State variable to track loading status
+const [loading, setLoading] = useState(false);
+
+// State variable to store the name of a Pokemon
+const [pokemon, setPokemon] = useState('');
+
+// State variable to hold an array of data
+const [data, setData] = useState([]);
+
+// State variable to store the URL of an image
+const [image, setImage] = useState('');
+
+// State variable to track error status
+const [error, setError] = useState(false);
  
   const getPokemons = async () => {
 
@@ -38,11 +48,10 @@ if(pokemon) {
   }
   };
   
-  useEffect(() => {
-    setError(false)
-   
-    
-  }, [pokemon])
+  // useEffect hook to reset the error state to false whenever the 'pokemon' state changes
+useEffect(() => {
+  setError(false);
+}, [pokemon]);
       
       
   return (

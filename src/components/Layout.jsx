@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 
-const Layout = ({children}) => {
-    const [showSidebar, setShowSidebar] = useState(false)
+// Functional component 'Layout' with a prop 'children' representing nested components
+const Layout = ({ children }) => {
+  // State variable to track the visibility of the sidebar, initially set to false
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className='flex flex-row w-[100vw] overflow-x-hidden'>
       <div className='relative z-[100]'>

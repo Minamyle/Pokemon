@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { deleteItemFromLocalstorage, getItemsFromLocalstorage } from '../functions';
 
 const MyPokemon = () => {
-  const [pokemons, setPokemons] = useState([])
+// State variable to store an array of pokemons
+const [pokemons, setPokemons] = useState([]);
 
-  useEffect(() => {
-    setPokemons(getItemsFromLocalstorage())
-  }, [])
-  const handleDeleteItem = (id) => {
+// useEffect hook to initialize the 'pokemons' state with data from local storage when the component mounts
+useEffect(() => {
+    setPokemons(getItemsFromLocalstorage());
+}, []);
+
+// Function to handle deletion of an item by ID from local storage and update the state
+const handleDeleteItem = (id) => {
+    // Delete item from local storage
     deleteItemFromLocalstorage(id);
-    setPokemons(getItemsFromLocalstorage()); // Update the state after deletion
-  };
+
+    // Update 'pokemons' state with the latest data from local storage after deletion
+    setPokemons(getItemsFromLocalstorage());
+};
   return (
     <div className='p-[1rem] salsa md:p-[2rem] bg-orange-100 min-h-[100vh] h-[100vh] pb-[4rem]'>
       <h1 className="text-3xl text-orange-600">My Team</h1>
